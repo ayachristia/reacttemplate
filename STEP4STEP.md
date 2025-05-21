@@ -4,6 +4,10 @@ Packages already downloaded in this template:
  - npm i react-icons
  - npm i sass-embedded -D
 
+ - Download down via zip from github 
+ - extract 
+ - drag folders and files to your repository project
+
  Only think to then do :
  - npm i -
 
