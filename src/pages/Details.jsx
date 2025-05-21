@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router"
+import { useLoaderData } from "react-router"
 
 export default function Detail(){
-    const {id} = useParams()
-    // console.log(id)
 
-    const [user, setUser] = useState();
-    const [isLoading, setIsLoading] = useState(true);
+    const user = useLoaderData();
+    // const {id} = useParams()
 
-    useEffect(()=>{
-        fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-        .then(res=>res.json())
-        .then(result=> setUser(result))
-        .finally(()=>
-            setIsLoading(false)
-        )
-    },[])
+    // const [user, setUser] = useState();
+    // const [isLoading, setIsLoading] = useState(true);
 
-    return isLoading ? (<p>Loading...</p>) : (
+    // useEffect(()=>{
+    //     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+    //     .then(res=>res.json())
+    //     .then(result=> setUser(result))
+    //     .finally(()=>
+    //         setIsLoading(false)
+    //     )
+    // },[])
+
+    return(
         <>
         <h2>{user.name}</h2>
         </>

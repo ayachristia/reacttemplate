@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 
 export default function List() {
-  const [users, setUsers] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+    const users = useLoaderData();
+//   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((result) => setUsers(result))
-      .finally(() => setIsLoading(false));
-  }, []);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+//   if (isLoading) {
+//     return <p>Loading...</p>;
+//   }
 
   return (
     <ul>

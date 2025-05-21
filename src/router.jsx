@@ -5,6 +5,9 @@ import List from "./pages/List";
 import Details from "./pages/Details";
 import Contact from "./pages/Contact"; 
 import NotFound from "./pages/NotFound";
+import { getUsers, getUser } from "./utilities/typicode";
+import Loading from "./components/loading";
+import { ErrorBoundary } from "./components/Error";
 
 
 
@@ -12,17 +15,21 @@ const router = createBrowserRouter([
 {
     path: "/",
     element: <Layout />,
+    hydrateFallbackElement: < Loading/>,
+    errorElement: < ErrorBoundary />,
     children: [{
         index: true,
         element: <Home />   
     },
     {
         path: "list",
-        element: <List />   
+        element: <List /> ,
+        loader: getUsers,
     },
     {   
         path: "list/:id",
-        element: <Details />
+        element: <Details />,
+        loader: getUser
     },  
     {
         path: "contact",
