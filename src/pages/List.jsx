@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 
 export default function List() {
-    const users = useLoaderData();
-//   const [isLoading, setIsLoading] = useState(true);
+    // const users = useLoaderData();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['users'],
+    queryFn: ()=> fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    }
+  )
 
 
-//   if (isLoading) {
-//     return <p>Loading...</p>;
-//   }
-
-  return (
+  return isLoading ? (<p>Loading...</p>) : (
+    <>
     <ul>
-      {users.map(user => (
+      {data.map(user => (
         <li key={user.id}>
           < Link to={`/list/${user.id}`}>{user.name}</Link>
           </li> // Added 'key' for unique identification of list items
       ))}
     </ul>
+    </>
   );
 }
 

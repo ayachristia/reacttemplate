@@ -1,8 +1,17 @@
-import { useLoaderData } from "react-router"
+import { useLoaderData, useParams } from "react-router"
+import { useQuery } from "@tanstack/react-query";
 
 export default function Detail(){
 
-    const user = useLoaderData();
+    const {id}= useParams();
+
+    const { data, isLoading} = useQuery({
+        queryKey: ['user'],
+        queryFn: () => fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+            .then(response => response.json())
+    })
+
+    // const user = useLoaderData();
     // const {id} = useParams()
 
     // const [user, setUser] = useState();
@@ -17,9 +26,9 @@ export default function Detail(){
     //     )
     // },[])
 
-    return(
+    return isLoading ? (<p>Loading...</p>): (
         <>
-        <h2>{user.name}</h2>
+        <h2>{data.name}</h2>
         </>
         // <p>user details</p>
     )
