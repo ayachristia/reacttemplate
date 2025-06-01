@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import { getUsers, getUser } from "./utilities/typicode";
 import Loading from "./components/loading";
 import { ErrorBoundary } from "./components/Error";
+import { handleSubmit } from "./utilities/actions";
 
 
 
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
     },  
     {
         path: "contact",
-        element: <Contact />
+        element: <Contact />,
+        action: handleSubmit,
     },
     {   
         path: "*",
