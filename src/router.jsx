@@ -10,6 +10,7 @@ import Loading from "./components/loading";
 import { ErrorBoundary } from "./components/Error";
 import { handleSubmit } from "./utilities/actions";
 import Login from "./pages/Login";
+import RequireAuth from "./components/RequireAuth";
 
 
 
@@ -25,8 +26,13 @@ const router = createBrowserRouter([
     },
     {
         path: "list",
-        element: <List /> ,
-        loader: getUsers,
+        element: (
+            <RequireAuth>
+                <List /> 
+            </RequireAuth>
+        )
+        ,
+        // loader: getUsers,
     },
     {   
         path: "list/:id",

@@ -1,9 +1,18 @@
 import { Form } from "react-router"
 import { useAuth } from "../context/AuthContext";
+import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
 
 export default function Login() {
-
+    const [error, setError] = useState("");
+    
     const {login} = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    console.log(location)
+    const from = location.state?.from?.pathname || "/"
+    console.log(from)
 
     async function handlelogin (event){
         event.preventDefault();
@@ -18,15 +27,19 @@ export default function Login() {
             },
             body: JSON.stringify(data),
         })
-
         const userData = await response.json()
-        console.log(userData)
+
+        if(!response.ok){
+            setError("Sorry! Could nok log in!")
+            return
+        }
         login(userData.accessToken)
+        navigate(from, {replace:true})
     }
 
     return (
         <>
-        
+        {error && <div className="error">{error}</div>}
         <Form onSubmit={handlelogin}>
         <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -36,7 +49,7 @@ export default function Login() {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" id="password"/>
         </div>
-        <button type="submit"></button>
+        <button type="submit">Login</button>
 
         </Form>
         </>
