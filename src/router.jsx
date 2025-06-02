@@ -9,6 +9,7 @@ import { getUsers, getUser } from "./utilities/typicode";
 import Loading from "./components/loading";
 import { ErrorBoundary } from "./components/Error";
 import { handleSubmit } from "./utilities/actions";
+import Login from "./pages/Login";
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
         action: handleSubmit,
+    },
+    {   
+        path: "login",
+        element: < Login />
     },
     {   
         path: "*",

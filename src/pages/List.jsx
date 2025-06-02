@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function List() {
-    // const users = useLoaderData();
+  const {token, login} = useAuth()
+  console.log(token)
 
+
+  // const users = useLoaderData();
   const { data, isLoading } = useQuery({
     queryKey: ['users'],
     queryFn: ()=> fetch('https://jsonplaceholder.typicode.com/users')

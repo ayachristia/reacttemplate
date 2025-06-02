@@ -1,7 +1,12 @@
 import { useLoaderData, useParams } from "react-router"
 import { useQuery } from "@tanstack/react-query";
 
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 export default function Detail(){
+    const {token} = useContext(AuthContext)
+    console.log(token)
 
     const {id}= useParams();
 
