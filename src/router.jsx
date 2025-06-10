@@ -5,10 +5,10 @@ import List from "./pages/List";
 import Details from "./pages/Details";
 import Contact from "./pages/Contact"; 
 import NotFound from "./pages/NotFound";
-import { getUsers, getUser } from "./utilities/typicode";
+import { getUsers, getUser } from "./api/typicode";
 import Loading from "./components/loading";
 import { ErrorBoundary } from "./components/Error";
-import { handleSubmit } from "./utilities/actions";
+import { handleSubmit } from "./api/actions";
 import Login from "./pages/Login";
 import RequireAuth from "./components/RequireAuth";
 
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             </RequireAuth>
         )
         ,
-        // loader: getUsers,
+        loader: getUsers,
     },
     {   
         path: "list/:id",

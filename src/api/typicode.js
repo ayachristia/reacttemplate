@@ -2,8 +2,8 @@ import queryClient from "../QueryClient";
 import { redirect } from "react-router";
 
 export async function getUsers() {
-    const token = sessionStorage.getItem("tokenLogin")
-    if (!token) redirect("/login")
+    // const token = sessionStorage.getItem("tokenLogin")
+    // if (!token) redirect("/login")
 
     return queryClient.fetchQuery({
         queryKey: ['users'],
@@ -14,7 +14,7 @@ export async function getUsers() {
             }
             return response.json();
         }
-    }); // <- Missing closing parenthesis and semicolon
+    });
 }
 
 

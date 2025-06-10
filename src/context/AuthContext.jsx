@@ -7,6 +7,8 @@ export function useAuth () {
     return useContext(AuthContext)
 }
 
+
+
 export default function AuthProvider({ children }) {
     const [token, setToken] = useState(sessionStorage.getItem("tokenLogin"));
 
@@ -26,3 +28,5 @@ export default function AuthProvider({ children }) {
         </AuthContext.Provider>
     )
 }
+
+
