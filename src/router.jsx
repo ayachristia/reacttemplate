@@ -5,12 +5,13 @@ import List from "./pages/List";
 import Details from "./pages/Details";
 import Contact from "./pages/Contact"; 
 import NotFound from "./pages/NotFound";
-import { getUsers, getUser } from "./api/typicode";
 import Loading from "./components/loading";
+import AboutUs from "./pages/aBOUTuS.JSX";
 import { ErrorBoundary } from "./components/Error";
-import { handleSubmit } from "./api/actions";
-import Login from "./pages/Login";
-import RequireAuth from "./components/RequireAuth";
+import MoreInfo from "./pages/MoreInfo";
+// import { getUsers, getUser } from "./api/typicode";
+// import { handleSubmit } from "./api/actions";
+// import RequireAuth from "./components/RequireAuth";
 
 
 
@@ -27,26 +28,30 @@ const router = createBrowserRouter([
     {
         path: "list",
         element: (
-            <RequireAuth>
                 <List /> 
-            </RequireAuth>
         )
         ,
-        loader: getUsers,
+        // loader: getUsers,
     },
     {   
         path: "list/:id",
         element: <Details />,
-        loader: getUser
+        // loader: getUser
     },  
     {
         path: "contact",
         element: <Contact />,
-        action: handleSubmit,
+        // action: handleSubmit,
     },
-    {   
-        path: "login",
-        element: < Login />
+    {
+        path: "about",
+        element: <AboutUs />,
+        // action: handleSubmit,
+    },
+    {
+        path: "moreinfo",
+        element: <MoreInfo />,
+        // action: handleSubmit,
     },
     {   
         path: "*",
